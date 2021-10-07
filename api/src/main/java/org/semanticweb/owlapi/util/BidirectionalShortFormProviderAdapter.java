@@ -28,6 +28,7 @@ import org.semanticweb.owlapi.model.OWLOntologyChange;
 import org.semanticweb.owlapi.model.OWLOntologyChangeVisitor;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.RemoveAxiom;
+import org.semanticweb.owlapi.model.ReplaceOntologyPrefixMappingChange;
 
 /**
  * A bidirectional short form provider which uses a specified short form provider to generate the
@@ -123,6 +124,12 @@ public class BidirectionalShortFormProviderAdapter extends CachingBidirectionalS
                             .filter(BidirectionalShortFormProviderAdapter.this::noLongerReferenced)
                             .forEach(BidirectionalShortFormProviderAdapter.this::remove);
                     }
+
+					@Override
+					public void visit(ReplaceOntologyPrefixMappingChange replaceOntologyPrefixMappingChange) {
+						// TODO Auto-generated method stub
+						
+					}
                 };
                 chg.accept(v);
             }

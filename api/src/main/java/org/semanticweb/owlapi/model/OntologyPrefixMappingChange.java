@@ -12,68 +12,40 @@
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. */
 package org.semanticweb.owlapi.model;
 
+import static org.semanticweb.owlapi.util.OWLAPIPreconditions.checkNotNull;
+
+import java.util.stream.Stream;
+
+import org.semanticweb.owlapi.change.OWLOntologyChangeData;
+import org.semanticweb.owlapi.change.OntologyPrefixMapChangeData;
+
 /**
- * @param <O> visitor type
- * @author Matthew Horridge, The University Of Manchester, Bio-Health Informatics Group
- * @since 2.0.0
+ * @author Matthew Horridge, The University of Manchester, Information Management Group
+ * @since 3.0.0
  */
-public interface OWLOntologyChangeVisitorEx<O> {
+public abstract class OntologyPrefixMappingChange extends OWLOntologyChange {
+
+    private final OWLDocumentFormat doc;
 
     /**
-     * Visit AddAxiom type.
-     *
-     * @param change change to visit
-     * @return visitor value
+     * @param ont the ontology to which the change is to be applied
+     * @param annotation the annotation
      */
-    O visit(AddAxiom change);
+    public OntologyPrefixMappingChange(OWLOntology ont, OWLDocumentFormat doc) {
+        super(ont);
+        this.doc = checkNotNull(doc, "annotation cannot be null");
+    }
 
+    
     /**
-     * Visit RemoveAxiom type.
+     * Gets the annotation that was added to an ontology.
      *
-     * @param change change to visit
-     * @return visitor value
+     * @return The annotation that was added
      */
-    O visit(RemoveAxiom change);
+    public OWLDocumentFormat getDocumentFormat() {
+        return doc;
+    }
 
-    /**
-     * Visit SetOntologyID type.
-     *
-     * @param change change to visit
-     * @return visitor value
-     */
-    O visit(SetOntologyID change);
 
-    /**
-     * Visit AddImport type.
-     *
-     * @param change change to visit
-     * @return visitor value
-     */
-    O visit(AddImport change);
-
-    /**
-     * Visit RemoveImport type.
-     *
-     * @param change change to visit
-     * @return visitor value
-     */
-    O visit(RemoveImport change);
-
-    /**
-     * Visit AddOntologyAnnotation type.
-     *
-     * @param change change to visit
-     * @return visitor value
-     */
-    O visit(AddOntologyAnnotation change);
-
-    /**
-     * Visit RemoveOntologyAnnotation type.
-     *
-     * @param change change to visit
-     * @return visitor value
-     */
-    O visit(RemoveOntologyAnnotation change);
-
-	O visit(ReplaceOntologyPrefixMappingChange replaceOntologyPrefixMappingChange);
+	
 }

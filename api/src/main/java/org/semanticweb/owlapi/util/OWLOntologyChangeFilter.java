@@ -23,6 +23,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyChange;
 import org.semanticweb.owlapi.model.OWLOntologyChangeVisitor;
 import org.semanticweb.owlapi.model.RemoveAxiom;
+import org.semanticweb.owlapi.model.ReplaceOntologyPrefixMappingChange;
 
 /**
  * Provides a convenient method to filter add/remove axiom changes based on the
@@ -118,4 +119,19 @@ public class OWLOntologyChangeFilter implements OWLAxiomVisitor, OWLOntologyChan
         add = false;
         processChange(change);
     }
+
+	@Override
+	public void visit(ReplaceOntologyPrefixMappingChange change) {
+		add = true;
+        processChange(change);
+		
+	}
+
+	private void processChange(ReplaceOntologyPrefixMappingChange change) {
+		checkNotNull(change, "change cannot be null");
+        ontology = change.getOntology();
+        change.accept(this);
+        ontology = null;
+				
+	}
 }

@@ -74,4 +74,6 @@ public interface OWLOntologyChangeVisitor {
      */
     default void visit(RemoveOntologyAnnotation change) {
     }
+
+	void visit(ReplaceOntologyPrefixMappingChange change);
 }

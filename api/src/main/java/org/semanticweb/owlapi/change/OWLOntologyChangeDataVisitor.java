@@ -60,4 +60,6 @@ public interface OWLOntologyChangeDataVisitor<R> {
      * @return result of visit
      */
     R visit(RemoveImportData data);
+
+	R visit(ReplaceOntologyPrefixMappingData replaceOntologyPrefixMappingData);
 }

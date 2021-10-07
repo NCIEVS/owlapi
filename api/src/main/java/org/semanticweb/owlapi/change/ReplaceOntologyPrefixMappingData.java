@@ -10,70 +10,43 @@
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. */
-package org.semanticweb.owlapi.model;
+package org.semanticweb.owlapi.change;
+
+import org.semanticweb.owlapi.model.AddOntologyAnnotation;
+import org.semanticweb.owlapi.model.OWLAnnotation;
+import org.semanticweb.owlapi.model.OWLDocumentFormat;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OntologyPrefixMappingChange;
+import org.semanticweb.owlapi.model.ReplaceOntologyPrefixMappingChange;
 
 /**
- * @param <O> visitor type
- * @author Matthew Horridge, The University Of Manchester, Bio-Health Informatics Group
- * @since 2.0.0
+ * Represents the specific non-ontology data required by an
+ * {@link AddOntologyAnnotation} change. <br>
+ * Instances of this class are immutable.
+ *
+ * @author Matthew Horridge, Stanford University, Bio-Medical Informatics Research Group
+ * @since 3.3
  */
-public interface OWLOntologyChangeVisitorEx<O> {
+public class ReplaceOntologyPrefixMappingData extends OntologyPrefixMapChangeData {
 
     /**
-     * Visit AddAxiom type.
+     * Constructs an {@code AddOntologyAnnotationData} object that describes an
+     * {@link AddOntologyAnnotation} change for the {@link OWLAnnotation}
+     * specified by the {@code annotation} parameter.
      *
-     * @param change change to visit
-     * @return visitor value
+     * @param annotation The {@link OWLAnnotation} that is the focus of some change.
      */
-    O visit(AddAxiom change);
+    public ReplaceOntologyPrefixMappingData(OWLDocumentFormat doc) {
+        super(doc);
+    }
 
-    /**
-     * Visit RemoveAxiom type.
-     *
-     * @param change change to visit
-     * @return visitor value
-     */
-    O visit(RemoveAxiom change);
+    @Override
+    public ReplaceOntologyPrefixMappingChange createOntologyChange(OWLOntology ontology) {
+        return new ReplaceOntologyPrefixMappingChange(ontology, getDocumentFormat());
+    }
 
-    /**
-     * Visit SetOntologyID type.
-     *
-     * @param change change to visit
-     * @return visitor value
-     */
-    O visit(SetOntologyID change);
-
-    /**
-     * Visit AddImport type.
-     *
-     * @param change change to visit
-     * @return visitor value
-     */
-    O visit(AddImport change);
-
-    /**
-     * Visit RemoveImport type.
-     *
-     * @param change change to visit
-     * @return visitor value
-     */
-    O visit(RemoveImport change);
-
-    /**
-     * Visit AddOntologyAnnotation type.
-     *
-     * @param change change to visit
-     * @return visitor value
-     */
-    O visit(AddOntologyAnnotation change);
-
-    /**
-     * Visit RemoveOntologyAnnotation type.
-     *
-     * @param change change to visit
-     * @return visitor value
-     */
-    O visit(RemoveOntologyAnnotation change);
-
-	O visit(ReplaceOntologyPrefixMappingChange replaceOntologyPrefixMappingChange);
+    @Override
+    public <O> O accept(OWLOntologyChangeDataVisitor<O> visitor) {
+        return visitor.visit(this);
+    }
 }

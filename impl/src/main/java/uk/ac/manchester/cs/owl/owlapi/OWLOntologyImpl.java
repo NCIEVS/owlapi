@@ -26,13 +26,16 @@ import org.semanticweb.owlapi.model.AddImport;
 import org.semanticweb.owlapi.model.AddOntologyAnnotation;
 import org.semanticweb.owlapi.model.ChangeDetails;
 import org.semanticweb.owlapi.model.OWLMutableOntology;
+import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyChange;
 import org.semanticweb.owlapi.model.OWLOntologyChangeVisitorEx;
 import org.semanticweb.owlapi.model.OWLOntologyID;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.OntologyPrefixMappingChange;
 import org.semanticweb.owlapi.model.RemoveAxiom;
 import org.semanticweb.owlapi.model.RemoveImport;
 import org.semanticweb.owlapi.model.RemoveOntologyAnnotation;
+import org.semanticweb.owlapi.model.ReplaceOntologyPrefixMappingChange;
 import org.semanticweb.owlapi.model.SetOntologyID;
 import org.semanticweb.owlapi.model.parameters.ChangeApplied;
 
@@ -147,5 +150,15 @@ public class OWLOntologyImpl extends OWLImmutableOntologyImpl
             }
             return NO_OPERATION;
         }
+
+		@Override
+		public ChangeApplied visit(ReplaceOntologyPrefixMappingChange opmc) {
+			// TODO Auto-generated method stub
+			
+			OWLOntology ont = opmc.getOntology();
+			ont.getOWLOntologyManager().setOntologyFormat(ont, opmc.getDocumentFormat());
+			return SUCCESSFULLY;
+			
+		}
     }
 }
