@@ -46,7 +46,7 @@
 		<module>contract</module>
 		<!-- The distribution module is a single-jar build of the whole OWL API. -->
 		<module>distribution</module>
-		<module>osgidistribution</module>
+		<!-- <module>osgidistribution</module> -->
 		<!-- <module>benchmarks</module> -->
 	</modules>
 
@@ -128,12 +128,12 @@
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
-		<dependencies>
+		<dependencies>			
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-rdf-api</artifactId>
 				<version>0.5.0</version>
-			</dependency>
+			</dependency>			
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-rdf-api</artifactId>
@@ -141,6 +141,7 @@
 				<classifier>tests</classifier>
 				<scope>test</scope>
 			</dependency>
+			
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-core</artifactId>

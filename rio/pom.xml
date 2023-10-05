@@ -97,6 +97,7 @@
 			<artifactId>jsonld-java</artifactId>
 		</dependency>
 	</dependencies>
+	
 		<!-- 
 	<build>
 		<plugins>
