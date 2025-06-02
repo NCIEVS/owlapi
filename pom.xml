@@ -252,7 +252,7 @@
 						</executions>
 					</plugin>
 
-					<!-- We need to configure the Javadoc Plugin for deploying the Javadocs -->
+					<!-- We need to configure the Javadoc Plugin for deploying the Javadocs 
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
@@ -272,6 +272,7 @@
 							</execution>
 						</executions>
 					</plugin>
+					-->
 
 				</plugins>
 			</build>
@@ -308,7 +309,7 @@
 				</executions>
 			</plugin>
 
-			<!-- We need to configure the Javadoc Plugin for deploying the Javadocs -->
+			<!-- We need to configure the Javadoc Plugin for deploying the Javadocs 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -328,7 +329,8 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- The Surefire Plugin is for error reporting. -->
+			-->
+			<!-- The Surefire Plugin is for error reporting.
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -341,7 +343,7 @@
 						<exclude>**/*IntegrationTestCase.java</exclude>
 					</excludes>
 					<printSummary>false</printSummary>
-					<!-- <parallel>all</parallel> <threadCount>1</threadCount> <perCoreThreadCount>true</perCoreThreadCount> -->
+					<parallel>all</parallel> <threadCount>1</threadCount> <perCoreThreadCount>true</perCoreThreadCount> 
 					<argLine>-Xmx2G -Djava.awt.headless=true</argLine>
 				</configuration>
 			</plugin>
@@ -383,7 +385,7 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<!-- verify all bytecode (including third party libs) is Java 8 max -->
+				verify all bytecode (including third party libs) is Java 8 max 
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
 				<version>3.0.0-M1</version>
@@ -422,6 +424,7 @@
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
 			</plugin>
+			-->
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
